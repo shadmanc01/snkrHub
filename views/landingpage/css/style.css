@@ -1,6 +1,7 @@
 body {
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  background-color: #272343; }
+  background-color: #FCEEE3; 
+}
 
 p {
   color: #b3b3b3;
@@ -19,7 +20,7 @@ a {
 
 .content {
   padding: 7rem 0;
-  background-color: #272343; }
+  background-color: #1E2431; }
 
 h2 {
   font-size: 20px; }
@@ -143,3 +144,7 @@ h2 {
     background: #fff;
     border-color: #fff;
     color: #000; }
+
+text-logo {
+  color: #FCEEE3!important;
+}
