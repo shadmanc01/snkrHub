@@ -7,7 +7,7 @@ _Team:_
 
 * Developer: Farouk Katakpaou
 
-* Developer: Cristopher Pico\
+* Developer: Cristopher Pico
 
 _Tech Stack:_
 
