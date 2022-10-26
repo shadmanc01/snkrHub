@@ -1,5 +1,5 @@
 # snkrbase 👟
-* Is the platform for the greatest products from the past, present and future. Shop new release and iconic sneakers and apparel from the world's leading brands. We do this by fetching shoes from the [Sneaks-Api](https://www.npmjs.com/package/sneaks-api/), and presenting them to the user. 
+* Is the platform for the greatest products from the past, present and future. Shop new release and iconic sneakers and apparel from the world's leading brands. We do this by fetching shoes from the [Sneaks-API](https://www.npmjs.com/package/sneaks-api/), and presenting them to the user. 
 ---
 _Team:_
 
