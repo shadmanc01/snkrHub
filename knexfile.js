@@ -13,11 +13,11 @@ module.exports = {
   },
 
   staging: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
+      database: '',
+      user:     'crislp',
+      password: 'kyloren1234'
     },
     pool: {
       min: 2,
