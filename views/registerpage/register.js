@@ -14,3 +14,4 @@ registerButton.addEventListener('click', (event) => {
         let rawUser = JSON.stringify({"password": pass, "username": userN});
     }
 })
+

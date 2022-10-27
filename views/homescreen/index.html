@@ -17,7 +17,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Website Menu #9</title>
+    <title>snkrhub home screen</title>
   </head>
   <body>
 
@@ -36,13 +36,13 @@
     <header class="site-navbar mt-3">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="index.html">snkrBase</a></div>
+          <div class="site-logo col-6"><a href="index.html">snkrHub</a></div>
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.html" class="nav-link active">home</a></li>
-              <li><a href="about.html">snkrLocker</a></li>
-              <li><a href="blog.html">snkrWish</a></li>
+              <li><a id="home" class="nav-link active">home</a></li>
+              <li><a id="snkrLocker">snkrLocker</a></li>
+              <li><a id="snkrWish">snkrWish</a></li>
               <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span>add a snkr</a></li>
               <li class="d-lg-none"><a href="login.html">log out</a></li>
             </ul>
@@ -60,7 +60,7 @@
       </div>
     </header>
 
-    <svg viewbox="0 0 100 20">
+    <svg id="greetingMessage"viewbox="0 0 100 20">
       <defs>
         <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
           <stop offset="5%" stop-color="#326384"/>
@@ -87,5 +87,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.sticky.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/homescreen.js"></script>
   </body>
 </html>
