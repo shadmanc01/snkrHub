@@ -13,8 +13,6 @@ module.exports = {
       password: ''
     }
   },
-
-
   production: {
     client: 'postgresql',
     connection: {
