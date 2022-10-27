@@ -1,4 +1,5 @@
 
+
 const  username = document.getElementById('username');
 const password = document.getElementById('password');
 const registerButton = document.getElementById('register');

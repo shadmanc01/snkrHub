@@ -1,19 +1,18 @@
-const SneaksAPI = require('sneaks-api');
-const express = require("express")
-const app = express()
-const cors = require("cors")
-const sneaks = new SneaksAPI();
 
-app.use(express.json())
-app.use(cors)
+const express = require('express');
+const app = express();
+const port = 3001; 
+const cors = require('cors');
+const authenRouter = require('./routes/authentication.js');
+// middleware
+app.use(express.json());
+app.use(cors());
 
-//getProducts(keyword, limit, callback) takes in a keyword and limit and returns a product array 
-sneaks.getProducts("Cloud White",1, function(err, products){
-    console.log(products)
-})
+app.use('/authentication', authenRouter);
+// app.use('/wishlist', petRouter);
+// app.use('/collection');
 
-
-app.get("/", (req,res)=>{
-    
+app.listen(port, () => {
+    console.log(`listening at port: ${port}`)
 })
 
