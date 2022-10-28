@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const authentificationModels = require("../models/authenticationModels.js")
 const pool = require("../db.js");
+
 const postRegister = async (req,res) => {
  const {username,password} = req.body
  
