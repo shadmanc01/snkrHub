@@ -1,10 +1,12 @@
-const { application } = require("express");
 
-let username = document.getElementById('username');
-let password = document.getElementById('password');
-let registerButton = document.getElementById('register');
+
+const  username = document.getElementById('username');
+const password = document.getElementById('password');
+const registerButton = document.getElementById('register');
+
 
 registerButton.addEventListener('click', (event) => {
+/*
     const pass = password.value;
     const userN = username.value;
     if(username.length < 1 || password.length < 1) alert('Username or Password is too short');
@@ -17,6 +19,33 @@ registerButton.addEventListener('click', (event) => {
         }).then((resp) => resp.json()).then((data) => {
             if(data) alert('Account has been created succesfully, please log in.');
         })
+*/
+     
+    const pass = password.value;
+    const userN = username.value;
+
+    console.log(pass)
+    if(pass.length < 1 || userN.length < 1) alert('Username or Password is too short');
+    else{
+        const myHeader = new Headers();
+        let rawUser = JSON.stringify({"password": pass, "username": userN});
+        const raw = JSON.stringify({
+            "completed": true
+          });
+        
+          const request = {
+            method: 'PATCH',
+            headers: myHeader,
+            body: rawUser,
+        
+          };
+        
+          fetch(`http://localhost:3001`, request)
+          .then(data=> data.json())
+          .then( profile =>  {
+
+          })        
+
 
     }
 })
