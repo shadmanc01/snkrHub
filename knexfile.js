@@ -11,6 +11,7 @@ module.exports = {
       database: 'sneakerHub4',
       user: 'postgres',
       password: ''
+
     }
   },
   production: {
