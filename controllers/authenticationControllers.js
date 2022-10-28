@@ -7,7 +7,7 @@ const postRegister = async (req,res) => {
    try {
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
-        const newRegisteredUser = await athentificationModels.registerInfo(username,hashedPassword);
+        const newRegisteredUser = await authentificationModels.registerInfo(username,hashedPassword);
         res.status(201).json(newRegisteredUser);
    } catch {
     res.send();
