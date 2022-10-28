@@ -1,9 +1,8 @@
 const pool = require("../db.js")
 
-const registerInfo = ( username, password) => {
-    console.log(username, password)
-    return pool.query("INSERT INTO users (username, password) VALUES($1, $2) RETURNING *",[username,password]).then(result=> {return result.rows})
-
+const registerInfo = async (username, password) => {
+    const newUser = await pool.query("INSERT INTO public.user (username, password) VALUES($1, $2) RETURNING *",[username,password]).then(result=> result.rows[0])
+    return newUser
 }
 
 const getUser = async (username) => {
@@ -11,12 +10,9 @@ const getUser = async (username) => {
     return user
 }
 const doso = (value)=> {
-    return pool.query("SELECT * FROM public.user_wishlist WHERE user_id = $1",[value]).then(result=> {return result.rows})
+    return pool.query("SELECT * FROM public.userWishlist WHERE user_id = $1",[value]).then(result=> {return result.rows})
 }
 
-doso(3)
-
-// registerInfo('farouk','farouk')
 module.exports = {
     registerInfo, 
     getUser
