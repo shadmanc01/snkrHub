@@ -4,5 +4,6 @@ const athentificationControllers = require('../controllers/authenticationControl
 
 // router.post("/login",athentificationControllers)
 router.post("/register",athentificationControllers.postRegister)
+router.post('/login', athentificationControllers.loginUser)
 
 module.exports = router;

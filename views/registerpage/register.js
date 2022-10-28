@@ -19,14 +19,14 @@ registerButton.addEventListener('click', (event) => {
             "completed": true
           });
         
-          const requestOptions = {
+          const request = {
             method: 'PATCH',
             headers: myHeader,
             body: rawUser,
         
           };
         
-          fetch(`http://localhost:3001`, requestOptions)
+          fetch(`http://localhost:3001`, request)
           .then(data=> data.json())
           .then( profile =>  {
 

@@ -9,8 +9,8 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'sneakerHub3',
-      user: 'postgres',
-      password: ''
+      user:     'crislp',
+      password: 'kyloren1234'
     }
   },
   production: {
