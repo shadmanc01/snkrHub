@@ -3,35 +3,43 @@ const authentificationModels = require("../models/authenticationModels.js")
 const pool = require("../db.js");
 
 const postRegister = async (req,res) => {
- const {username,password} = req.body;
+ const {username,password} = req.body
+ 
+
+
    try {
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
-        const newRegisteredUser = await authentificationModels.registerInfo(username,hashedPassword);
-        res.status(201).json(newRegisteredUser);
+        const register = await authentificationModels.registerInfo(username,hashedPassword)
+        console.log(register,hashedPassword);
+        res.send(register);
    } catch {
     res.send();
    }
 }
 
-
-const loginUser = async (req, res) => {
-  try {
-    const {username, password} = req.body
-    const user = await athentificationModels.getUser(username)
-    const login = await bcrypt.compare(password, user.password)
-    if(login){
-      res.status(200).send(user)
-    } else{
-      res.status(400).send('password is wrong')
+const checkLogin = async (req,res) => {
+    const {username,password} = req.body;
+    const nameExist = await pool.query("SELECT * FROM users WHERE username = $1",[username]).then(result=> {return result.rows[0]});
+    if (!nameExist){
+        res.status(400).send("cannot find user")
     }
-  } catch (error) {
-    res.status(500).send("Server error")
-  }
+    try {
+        if (await bcrypt.compare(password,nameExist.password)){
+            const wishlist = await  pool.query("SELECT * FROM user_wishlist WHERE user_id = $1",[nameExist.id])
+            const collection =  await pool.query("SELECT * FROM collections WHERE user_id = $1",[nameExist.id])
+            const wishlistData = wishlist.rows
+            const collectionData = collection.rows
+            res.send({wishlistData,collectionData,userid: nameExist.id})
+        }else {
 
+        }
+    }catch {
+        res.status(500).send()
+    }
 }
 
 module.exports = {
     postRegister,
-    loginUser
+    checkLogin,
 }
