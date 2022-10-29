@@ -73,6 +73,7 @@ submitButton.addEventListener("click", (event) => {
           let snkrLocker = document.createElement("button");
           let snkrWish = document.createElement("button");
           snkrLocker.className = "btn btn-primary me-md-2";
+          snkrLocker.id = "snkrLocker"
           snkrWish.className = "btn btn-primary";
           snkrLocker.type = "button";
           snkrWish.type = "button";
@@ -82,6 +83,20 @@ submitButton.addEventListener("click", (event) => {
           buttonDiv.appendChild(snkrWish);
           snkrLocker.style.margin = "10px";
           snkrWish.style.margin = "10px"
+          snkrLocker.addEventListener("click", (event) => {
+              event.preventDefault()
+              sneakerDiv.removeChild(nameDisplay);
+              sneakerDiv.removeChild(imgDisplay);
+              buttonDiv.removeChild(snkrLocker);
+              buttonDiv.removeChild(snkrWish);
+          })
+          snkrWish.addEventListener("click", (event) => {
+            event.preventDefault()
+            sneakerDiv.removeChild(nameDisplay);
+            sneakerDiv.removeChild(imgDisplay);
+            buttonDiv.removeChild(snkrLocker);
+            buttonDiv.removeChild(snkrWish);
+        })
         });
         // add functionality 
       }
@@ -89,3 +104,4 @@ submitButton.addEventListener("click", (event) => {
        alert("sneaker not found")
       }
 })
+
