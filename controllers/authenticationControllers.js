@@ -26,9 +26,11 @@ const checkLogin = async (req,res) => {
         const passCheck = await bcrypt.compare(password, user.password);
         console.log(passCheck)
         if(!passCheck) res.status(400).json({message:"Password is incorrect"});
-        else res.status(200).json({id: user.id})
+        else res.status(200).json({
+            "id": user.id,
+            "username": user.username
+        })
     } 
-
     // try {
     //     if (await bcrypt.compare(password,nameExist.password)){
     //         const wishlist = await  pool.query("SELECT * FROM public.user_wishlist WHERE user_id = $1",[nameExist.id])

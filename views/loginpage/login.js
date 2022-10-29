@@ -22,7 +22,13 @@ loginButton.addEventListener("click" , (event)=>{
      try{
         fetch(`http://localhost:3001/authentication/login`, request)
         .then(file=> file.json())
-        .then(data=> console.log(data))
+        .then(data=> {
+          if(data.id) {
+            window.localStorage.setItem("username", data.username);
+            window.localStorage.setItem("id", data.id);
+            window.location.href = "http://127.0.0.1:5500/views/homescreen/index.html";
+          }
+        });
         // add functionality 
       }
       catch(error){
