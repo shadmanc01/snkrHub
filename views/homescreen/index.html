@@ -6,14 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="fonts/icomoon/style.css">
-
     <link rel="stylesheet" href="css/owl.carousel.min.css">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -50,7 +47,27 @@
           
           <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
             <div class="ml-auto">
-              <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>add snkr</a>
+              <button type="button" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block" data-toggle="modal" data-target="#myModal"><span class="mr-2 icon-add"></span>add snkr</button>
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content start-->
+                    <div id="modal"class="modal-content">
+                        <div class="modal-header">
+                            
+                            <h4 class="modal-title">add to snkrLocker or snkrWish</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                    search a snkr<br />
+                                    <input id="sneakername"name="qfront" type="text" style="width: 200px" value="" /> <input type="submit" value="Search" /><br />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
               <a href="../loginpage/login.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>log out</a>
             </div>
             <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
@@ -80,7 +97,7 @@
         </pattern>
       </defs>
       <text id="greetingMessage" text-anchor="middle" x="50" y="15" font-size="10" fill="url(#wave)"  fill-opacity="0.6">welcome</text>
-      <text id="greetingMessage" text-anchor="middle" x="50" y="15" font-size="10" fill="url(#gradient)" fill-opacity="0.1">welcome</text>
+      <text id="greetingMessage2" text-anchor="middle" x="50" y="15" font-size="10" fill="url(#gradient)" fill-opacity="0.1">welcome</text>
     </svg>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -88,5 +105,7 @@
     <script src="js/jquery.sticky.js"></script>
     <script src="js/main.js"></script>
     <script src="js/homescreen.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
   </body>
 </html>
