@@ -1,4 +1,3 @@
-
 const navLocker = document.getElementById("snkrLocker");
 const navWish = document.getElementById("snkrWish");
 const navHome = document.getElementById("home");
@@ -89,6 +88,21 @@ submitButton.addEventListener("click", (event) => {
               sneakerDiv.removeChild(imgDisplay);
               buttonDiv.removeChild(snkrLocker);
               buttonDiv.removeChild(snkrWish);
+              const myHeader = {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                }
+                const request = {
+                    method: 'POST',
+                    headers: myHeader,
+                    body: JSON.stringify({
+                        "sneakerName": snkrName,
+                        "id": localStorage.id
+                    })
+                };
+                fetch(`http://localhost:3001/collection`, request)
+                .then(file => file.json())
+                .then(data => console.log(data));
           })
           snkrWish.addEventListener("click", (event) => {
             event.preventDefault()
@@ -96,6 +110,21 @@ submitButton.addEventListener("click", (event) => {
             sneakerDiv.removeChild(imgDisplay);
             buttonDiv.removeChild(snkrLocker);
             buttonDiv.removeChild(snkrWish);
+            const myHeader = {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                }
+                const request = {
+                    method: 'POST',
+                    headers: myHeader,
+                    body: JSON.stringify({
+                        "sneakerName": snkrName,
+                        "id": localStorage.id
+                    })
+                };
+                fetch(`http://localhost:3001/wishlist`, request)
+                .then(file => file.json())
+                .then(data => console.log(data));
         })
         });
         // add functionality 
