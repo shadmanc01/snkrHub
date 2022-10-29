@@ -1,5 +1,5 @@
 // Update with your config settings.
-//  require("dotenv").config()
+require("dotenv").config()
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
@@ -8,10 +8,9 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      database: 'sneakerHub4',
-      user: 'postgres',
-      password: ''
-
+      database: process.env.DATABASE,
+      user: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD
     }
   },
   production: {
