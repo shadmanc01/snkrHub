@@ -1,25 +1,28 @@
 const UserName = document.getElementById('userLogin')
 const userPassword = document.getElementById('userPassword')
-const logInButton = document.getElementById('logInButton')
+const loginButton = document.getElementById('loginButton')
 
 
-logInButton.addEventListener("click" , (event)=>{
+loginButton.addEventListener("click" , (event)=>{
      const username = UserName.value
      const password = userPassword.value
-     const myHeader = new Headers();
-        let rawUser = JSON.stringify({"password": password, "username": username});
-        
-          const request = {
-            method: 'PATCH',
-            headers: myHeader,
-            body: rawUser,
-        
-          };
+     const myHeader = {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          }
+
+    let rawUser = JSON.stringify({"password": password, "username": username});
+    
+        const request = {
+        method: 'POST',
+        headers: myHeader,
+        body: rawUser,
+    };
      
      try{
-        fetch(`http://localhost:3001/authentication/login'`, request)
+        fetch(`http://localhost:3001/authentication/login`, request)
         .then(file=> file.json())
-        .then(data=> {})
+        .then(data=> console.log(data))
         // add functionality 
       }
       catch(error){
