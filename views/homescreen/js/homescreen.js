@@ -1,9 +1,10 @@
+
 const navLocker = document.getElementById("snkrLocker");
 const navWish = document.getElementById("snkrWish");
 const navHome = document.getElementById("home");
 let welcomeMessage = document.getElementById("greetingMessage");
 let welcomeMessage2 = document.getElementById("greetingMessage2");
-const logOutButton = document.getElementById("logout")
+const searchButton = document.getElementById("sneakername")
 
 navLocker.addEventListener("click", removeMessage);
 navWish.addEventListener("click", removeMessage);
@@ -29,30 +30,37 @@ function customGreeting() {
     welcomeMessage.innerHTML = `Welcome ${name}`;
     welcomeMessage2.innerHTML = `Welcome ${name}`;
 }
-// function logOut() {
-//     window.location.href = "../loginpage/login.html";
-// }
-// code for the modal
-var domainroot = "www.frontendfreecode.com"
-//---------Vars for the engine--------------------------->
-var searchaction = [ //form action for the 3 search engines
-    "http://www.google.com/search",
-    "http://search.yahoo.com/search",
-    "http://search.msn.com/results.aspx"
-]
-var queryfieldname = ["q", "p", "q"] //name of hidden query form for the 3 search engines
-function switchaction(cur, index) {
-    cur.form.action = searchaction[index]
-    document.getElementById("hiddenquery").name = queryfieldname[index]
-}
-function jksitesearch(curobj) {
-    for (i = 0; i < document.jksearch.se.length; i++) { //loop through radio to see which is checked
-        if (document.jksearch.se[i].checked == true)
-            switchaction(document.jksearch.se[i], i)
-        document.getElementById("hiddenquery").value = "site:" + domainroot + " " + curobj.qfront.value
-    }
-}
 
 //search sneaker modal
 
+searchButton.addEventListener("click", () => {
+    const snkr = sneakername.value;
+    const myHeader = {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+        }
 
+        let rawSnkr = JSON.stringify({"password": snkr});
+    
+        const request = {
+        method: 'POST',
+        headers: myHeader,
+        body: rawUser,
+    };
+     
+     try{
+        fetch(`http://localhost:3001/authentication/login`, request)
+        .then(file=> file.json())
+        .then(data=> {
+          if(data.id) {
+            window.localStorage.setItem("username", data.username);
+            window.localStorage.setItem("id", data.id);
+            window.location.href = "../homescreen/index.html";
+          }
+        });
+        // add functionality 
+      }
+      catch(error){
+       alert("user not found")
+      }
+})
