@@ -26,7 +26,7 @@ loginButton.addEventListener("click" , (event)=>{
           if(data.id) {
             window.localStorage.setItem("username", data.username);
             window.localStorage.setItem("id", data.id);
-            window.location.href = "http://127.0.0.1:5500/views/homescreen/index.html";
+            window.location.href = "../homescreen/index.html";
           }
         });
         // add functionality 
