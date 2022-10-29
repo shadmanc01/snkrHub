@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt')
 const app = express();
 const port = 3001; 
 const cors = require('cors');
+const SneaksAPI = require('sneaks-api');
+const sneaks = new SneaksAPI();
 const authenRouter = require('./routes/authentication.js');
 
 const collectionRouter = require('./routes/collection.js');
@@ -17,6 +19,17 @@ app.use('/authentication', authenRouter);
 app.use('/wishlist', wishListRouter);
 app.use('/collection', collectionRouter);
 
+
+// middleware
+
+app.get("/", (req, res) => {
+    res.send("welcome");
+})
+app.get('/:sneakerName', async (req, res) => {
+    await sneaks.getProducts(req.params.sneakerName, 1, function(err, products){
+        res.status(200).json(products);
+    })
+})
 
 // app.post('authentication/register', async (req,res)=>{
 
