@@ -1,4 +1,7 @@
 const collectionModels = require("../models/collectionModels.js");
+const SneaksAPI = require('sneaks-api');
+const { all } = require("../routes/authentication.js");
+const sneaks = new SneaksAPI();
 
 const postCollection = async (req,res) => {
     console.log(req.body);

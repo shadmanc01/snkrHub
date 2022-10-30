@@ -7,18 +7,84 @@ const searchButton = document.getElementById("sneakername");
 const submitButton = document.getElementById("submitButton");
 let sneakerDiv = document.getElementById("sneaker");
 let buttonDiv = document.getElementById("sneakerButtons");
+let cardCollection = document.getElementById("collectionCards")
+let netWorth = document.getElementById("worth");
+let count = 1;
+let worth = 0;
 
-navLocker.addEventListener("click", removeMessage);
-navWish.addEventListener("click", removeMessage);
-navHome.addEventListener("click", bringbackMessage);
+navLocker.addEventListener("click", addLockerCards);
+navWish.addEventListener("click", addWishCards);
 // logOutButton.addEventListener("click", logOut);
 
 window.addEventListener("DOMContentLoaded", customGreeting);
 
-function removeMessage () {
+function addLockerCards () {
     welcomeMessage.style.display = "none";
     welcomeMessage2.style.display = "none";
-    console.log("done");
+    const myHeader = {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+        }
+        const request = {
+        method: 'GET',
+        headers: myHeader
+    };
+    try{
+        fetch(`http://localhost:3001/collection/${localStorage.id}`, request)
+        .then(file=> file.json())
+        .then(data => {
+            const arr = [];
+            let count = 0;
+            data.forEach(async (element) => {
+                await fetch(`http://localhost:3001/${element.sneaker_name}`)
+                .then(resp => resp.json())
+                .then(sneaker => {
+                    arr.push(sneaker);
+                    count++;
+                    if(count >= data.length) {
+                        localStorage.setItem("obj", JSON.stringify(arr));
+                    }
+               
+                })
+            });
+        });
+    }
+    catch(error){
+        alert("Collection not Found")
+       }
+    const obj = JSON.parse(localStorage.obj);
+    obj.forEach(el => {
+        let sneakerDiv = document.createElement("div");
+        sneakerDiv.className = "card";
+        sneakerDiv.style.width = "18rem";
+        let snkrImage = document.createElement("img");
+        snkrImage.className = "card-img-top";
+        snkrImage.src= el[0].thumbnail;
+        snkrImage.alt = "Card image cap";
+        let innerDiv = document.createElement("div");
+        let title = document.createElement("h5");
+        title.innerText = el[0].shoeName;
+        title.className = "card-title";
+        let cardtext = document.createElement("p");
+        cardtext.innerText = `Silhoutte: ${el[0].silhoutte}`
+        title.appendChild(cardtext);
+        sneakerDiv.appendChild(snkrImage);
+        sneakerDiv.appendChild(innerDiv);
+        innerDiv.appendChild(title);
+        sneakerDiv.style.margin = "10px";
+        sneakerDiv.style.padding = "5px";
+        sneakerDiv.style.border = "thick solid #977046"
+        cardCollection.appendChild(sneakerDiv);
+        worth+=Number(el[0].lowestResellPrice.stockX);
+        // console.log(el)
+    })
+    netWorth.innerText = `$${worth}`;
+}
+
+function addWishCards () {
+    welcomeMessage.style.display = "none";
+    welcomeMessage2.style.display = "none";
+    
 }
 
 function bringbackMessage () {
