@@ -1,7 +1,10 @@
 const collectionModels = require("../models/collectionModels.js");
+const SneaksAPI = require('sneaks-api');
+const { all } = require("../routes/authentication.js");
+const sneaks = new SneaksAPI();
 
 const postCollection = async (req,res) => {
-    console.log(req.body)
+    console.log(req.body);
     const {sneakerName,id} = req.body
     const postData = await collectionModels.addToCollection(sneakerName,id);
     return postData ? res.status(201).send(postData) : res.sendStatus(404);
