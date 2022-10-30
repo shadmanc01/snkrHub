@@ -37,7 +37,6 @@
 
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a id="home" class="nav-link active">home</a></li>
               <li><a id="snkrLocker">snkrLocker</a></li>
               <li><a id="snkrWish">snkrWish</a></li>
               <!-- <li class="d-lg-none"><span class="mr-2">+</span>add a snkr</li>
@@ -59,9 +58,12 @@
                         <div class="modal-body">
                             <form>
                                     search a snkr<br />
-                                    <input id="sneakername"name="qfront" type="text" style="width: 200px" value="" /> <input type="submit" value="Search" /><br />
+                                    <input id="sneakername"name="qfront" type="text" style="width: 200px" value="" /> <input id="submitButton"type="submit" value="Search" /><br />
                             </form>
                         </div>
+                        <div id="sneaker">
+                        </div>
+                        <div id="sneakerButtons"class="gap-2 m-4 d-md-flex justify-content-md-center"></div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
@@ -109,7 +111,10 @@
         <a href="#" id="sometext" attribute = "Jordan 4 Retro" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
-
+    
+      <header id="worth"></header>
+    <div class="d-flex flex-wrap bd-highlight mb-3"id="collectionCards"></div>
+    <div class="d-flex flex-wrap bd-highlight mb-3"id="collectionCards2"></div>
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
