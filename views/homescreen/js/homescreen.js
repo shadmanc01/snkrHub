@@ -5,9 +5,54 @@ const navHome = document.getElementById("home");
 let welcomeMessage = document.getElementById("greetingMessage");
 let welcomeMessage2 = document.getElementById("greetingMessage2");
 const searchButton = document.getElementById("sneakername")
+const RemoveCardInWish = document.querySelector(".card")
 
 navLocker.addEventListener("click", removeMessage);
-navWish.addEventListener("click", removeMessage);
+// fucntion to add to the wish list 
+
+navWish.addEventListener("click", ()=>{
+  removeMessage()
+  const userId = window.localStorage.getItem("id")
+  console.log(userId)
+  fetch(`http://localhost:3001/wishlist/${userId}`)
+  .then(data => data.json())
+       
+      }
+  );
+
+// remove from wish list 
+RemoveCardInWish.addEventListener('click' , (event)=> {
+  event.preventDefault()
+  const sneakerName = event.target.attributes[2].value
+  console.log(sneakerName)
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  
+  var raw = JSON.stringify({
+    "sneakerName": sneakerName,
+    "id" : window.localStorage.getItem("id")
+  });
+  
+  const del = {
+    method: 'DELETE',
+    headers: myHeaders,
+    body: raw,
+  };
+
+  fetch(`http://localhost:3001/wishlist/`, del)
+  .then(data => data.json())
+  .then(result=> {
+    console.log(result)
+  })
+  
+})
+
+
+
+
+
+
+
 navHome.addEventListener("click", bringbackMessage);
 // logOutButton.addEventListener("click", logOut);
 
@@ -64,3 +109,4 @@ searchButton.addEventListener("click", () => {
        alert("user not found")
       }
 })
+
