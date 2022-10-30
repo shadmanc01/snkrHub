@@ -8,6 +8,7 @@ const submitButton = document.getElementById("submitButton");
 let sneakerDiv = document.getElementById("sneaker");
 let buttonDiv = document.getElementById("sneakerButtons");
 let cardCollection = document.getElementById("collectionCards")
+let cardCollection2 = document.getElementById("collectionCards2")
 let netWorth = document.getElementById("worth");
 let count = 1;
 let worth = 0;
@@ -84,6 +85,7 @@ function addLockerCards () {
 function addWishCards () {
     welcomeMessage.style.display = "none";
     welcomeMessage2.style.display = "none";
+    cardCollection.style.display = "none";
     const myHeader = {
         'Content-Type': 'application/json'
         // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -137,7 +139,7 @@ function addWishCards () {
         sneakerDiv.style.margin = "10px";
         sneakerDiv.style.padding = "5px";
         sneakerDiv.style.border = "thick solid #977046"
-        cardCollection.appendChild(sneakerDiv);
+        cardCollection2.appendChild(sneakerDiv);
         // console.log(el)
     })
     
