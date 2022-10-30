@@ -78,12 +78,68 @@ function addLockerCards () {
         worth+=Number(el[0].lowestResellPrice.stockX);
         // console.log(el)
     })
-    netWorth.innerText = `$${worth}`;
+    // netWorth.innerText = `$${worth}`;
 }
 
 function addWishCards () {
     welcomeMessage.style.display = "none";
     welcomeMessage2.style.display = "none";
+    const myHeader = {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+        }
+        const request = {
+        method: 'GET',
+        headers: myHeader
+    };
+    try{
+        fetch(`http://localhost:3001/wishlist/${localStorage.id}`, request)
+        .then(file=> file.json())
+        .then(data => {
+            const arr = [];
+            let count = 0;
+            data.forEach(async (element) => {
+                await fetch(`http://localhost:3001/${element.sneaker_name}`)
+                .then(resp => resp.json())
+                .then(sneaker => {
+                    arr.push(sneaker);
+                    count++;
+                    if(count >= data.length) {
+                        localStorage.setItem("obj2", JSON.stringify(arr));
+                    }
+               
+                })
+            });
+        });
+    }
+    catch(error){
+        alert("Collection not Found")
+       }
+    const obj2 = JSON.parse(localStorage.obj2);
+    obj2.forEach(el => {
+        let sneakerDiv = document.createElement("div");
+        sneakerDiv.className = "card";
+        sneakerDiv.style.width = "18rem";
+        let snkrImage = document.createElement("img");
+        snkrImage.className = "card-img-top";
+        snkrImage.src= el[0].thumbnail;
+        snkrImage.alt = "Card image cap";
+        let innerDiv = document.createElement("div");
+        let title = document.createElement("h5");
+        title.innerText = el[0].shoeName;
+        title.className = "card-title";
+        let cardtext = document.createElement("p");
+        cardtext.innerText = `Silhoutte: ${el[0].silhoutte}`
+        title.appendChild(cardtext);
+        sneakerDiv.appendChild(snkrImage);
+        sneakerDiv.appendChild(innerDiv);
+        innerDiv.appendChild(title);
+        sneakerDiv.style.margin = "10px";
+        sneakerDiv.style.padding = "5px";
+        sneakerDiv.style.border = "thick solid #977046"
+        cardCollection.appendChild(sneakerDiv);
+        // console.log(el)
+    })
     
 }
 
