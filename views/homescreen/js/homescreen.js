@@ -10,8 +10,17 @@ let buttonDiv = document.getElementById("sneakerButtons");
 let cardCollection = document.getElementById("collectionCards")
 let cardCollection2 = document.getElementById("collectionCards2")
 let netWorth = document.getElementById("worth");
+const logOut = document.getElementById("logout")
 let count = 1;
 let worth = 0;
+
+logOut.addEventListener("click", (event)=> {
+  event.preventDefault()
+    window.localStorage.obj = []
+    window.localStorage.obj2 = []
+    window.location.href = "../loginpage/login.html"
+})
+
 
 navLocker.addEventListener("click", addLockerCards);
 navWish.addEventListener("click", addWishCards);
@@ -120,7 +129,26 @@ function addWishCards () {
     const obj2 = JSON.parse(localStorage.obj2);
     obj2.forEach(el => {
         let sneakerDiv = document.createElement("div");
+        let snkrLocker = document.createElement("button");
+        let deleteButton = document.createElement("button")
+        let buttonDiv = document.createElement("div")
+          deleteButton.className = "btn btn-primary me-md-2";
+          deleteButton.id = `${el[0].shoeName}`
+          deleteButton.type = "button";
+          deleteButton.innerText = "add to snkrLocker";
+          deleteButton.innerText = "Delete"
+          deleteButton.style.margin = "2px";
+        snkrLocker.className = "btn btn-primary me-md-2";
+          snkrLocker.id = `${el[0].shoeName}`
+          snkrLocker.type = "button";
+          snkrLocker.innerText = "add to snkrLocker";
+          deleteButton.innerText = "Delete"
+          snkrLocker.style.margin = "2px";
+      
+
+
         sneakerDiv.className = "card";
+        sneakerDiv.id = el[0].shoeName
         sneakerDiv.style.width = "18rem";
         let snkrImage = document.createElement("img");
         snkrImage.className = "card-img-top";
@@ -136,6 +164,72 @@ function addWishCards () {
         sneakerDiv.appendChild(snkrImage);
         sneakerDiv.appendChild(innerDiv);
         innerDiv.appendChild(title);
+        sneakerDiv.appendChild(buttonDiv);
+        buttonDiv.appendChild(snkrLocker);
+        buttonDiv.appendChild(deleteButton)
+        snkrLocker.id =`${el[0].shoeName}`
+        deleteButton.addEventListener("click", (event)=>{
+          // sneakerDiv.style.display = "none"
+          sneakerDiv.remove()
+           
+          const myHeader = {
+         'Content-Type': 'application/json'
+         // 'Content-Type': 'application/x-www-form-urlencoded',
+         }
+         const request = {
+             method: 'DELETE',
+             headers: myHeader,
+             body: JSON.stringify({
+                 "sneakerName": el[0].shoeName,
+                 "id": localStorage.id
+             })
+         };
+             fetch(`http://localhost:3001/wishlist/`, request)
+             .then(file=> file.json())
+             .then(data => {console.log(data)})
+
+        })
+        snkrLocker.addEventListener("click", (event) => {
+           event.preventDefault()
+            
+          const myHeader = {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            }
+            const request = {
+                method: 'POST',
+                headers: myHeader,
+                body: JSON.stringify({
+                    "sneakerName": el[0].shoeName,
+                    "id": localStorage.id
+                })
+            };
+            fetch(`http://localhost:3001/collection`, request)
+            .then(file => file.json())
+            .then(data => {
+              console.log(data.sneaker_name,localStorage.id)
+               const myHeader = {
+              'Content-Type': 'application/json'
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+              }
+              const request = {
+                  method: 'DELETE',
+                  headers: myHeader,
+                  body: JSON.stringify({
+                      "sneakerName": data.sneaker_name,
+                      "id": localStorage.id
+                  })
+              };
+                  fetch(`http://localhost:3001/wishlist/`, request)
+                  .then(file=> file.json())
+                  
+                
+            }
+              );
+              
+        
+      })
+
         sneakerDiv.style.margin = "10px";
         sneakerDiv.style.padding = "5px";
         sneakerDiv.style.border = "thick solid #977046"
