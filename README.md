@@ -37,6 +37,7 @@ Product Manager/Developer: Shadman Chowdhury
 * [LinkedIn](https://www.linkedin.com/in/shadmanc/)
 * [Github]()
 
+___
 ***Contact:***
 
 Developer: Farouk Katakpaou
