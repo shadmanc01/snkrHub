@@ -1,5 +1,5 @@
 # snkrHub 👟
-* snkrHub is an online portfolio for the modern, in an ever growing culture of sneakers. snkrHub tracks and monitors the cost of your sneakers, presenting the user with the most accurate market data from three reliable websites; GOAT ,StockX, and FlightClub. While compiling your total value into the worth of your portfolio. Users can also currate a wishlist for sneakers that they wish to acquire and move them to their portfolio once you own them. We utilize [Sneaks-API](https://www.npmjs.com/package/sneaks-api/), to scrape the prices and images for the sneakers. 
+* snkrHub is an online portfolio for the modern, in an ever growing culture of sneakers. snkrHub tracks and monitors the cost of your sneakers, presenting the user with the most accurate market data from three reliable websites; GOAT ,StockX, and FlightClub. While compiling your total value into the worth of your portfolio. Users can also currate a wishlist for sneakers that they wish to acquire and seamlessly move them to their portfolio once you own them. We utilize [Sneaks-API](https://www.npmjs.com/package/sneaks-api/), to scrape the prices and images for the sneakers. 
 ---
 _Team:_
 
